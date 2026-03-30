@@ -20,17 +20,23 @@ def score_candidate(text):
         score += 15
         reasons.append("Strong Archetype")
 
-    # 3. Cultural & Training (+20)
+    # 3. Numerical Experience (+10)
+    # New category for candidates used to working with numbers/audits
+    if any(w in text for w in ['accounting', 'bookkeeping', 'audit', 'financial', 'mathematics', 'statistical']):
+        score += 10
+        reasons.append("Numerical/Detail Exp")
+
+    # 4. Cultural & Training (+20)
     if any(w in text for w in ['bilingual', 'spanish', 'mandarin', 'trainer', 'certification', 'testing']):
         score += 20
         reasons.append("Culture/Training Fit")
 
-    # 4. Stability Penalty (-20)
+    # 5. Stability Penalty (-20)
     if "2025" in text or "2026" in text:
         score -= 20
         reasons.append("Recent Job Switch Risk")
 
-    # 5. Overqualified/STEM Penalty (-30)
+    # 6. Overqualified/STEM Penalty (-30)
     if any(w in text for w in ['masters', 'phd', 'engineering', 'biology', 'physics', 'chemistry']):
         score -= 30
         reasons.append("STEM/Overqualified Flag")
