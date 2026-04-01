@@ -67,7 +67,7 @@ if files:
         color = '#c6efce' if val >= 80 else '#ffc7ce' if val < 40 else '#ffeb9c'
         return f'background-color: {color}'
 
-    st.dataframe(df.style.applymap(color_rows, subset=['Score']))
+    st.dataframe(df.style.map(color_rows, subset=['Score']))
     
     # Export Button
     csv = df.to_csv(index=False).encode('utf-8')
